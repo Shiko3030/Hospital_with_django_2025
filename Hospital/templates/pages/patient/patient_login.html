@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="login-container">
+    <h2 style="color: white" class="text-center">Patient Login</h2>
+
+
+    <!-- Login form -->
+    <form method="post" class="container mt-5" style="max-width: 400px;">
+        {% csrf_token %}
+
+        <!-- Avatar Image -->
+        <div class="text-center mb-4">
+            <img src="{% static 'img/patient.jpg' %}" alt="Avatar" class="rounded-circle" width="100" height="100">
+        </div>
+
+        <div class="mb-3">
+            <label style="color: white" for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+            {{ form.username }}
+        </div>
+
+        <div class="mb-3">
+            <label style="color: white" for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }}</label>
+            {{ form.password }}
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Login</button>
+    </form>
+
+    <!-- Link to registration -->
+    <p class="text-center mt-3" style="color: #ddd;">
+        Don't have an account? <a href="{% url 'patient_signup' %}" style="color: #ddd;">Sign up</a>
+    </p>
+</div>
+
+{% endblock %}

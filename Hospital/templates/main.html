@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Healthcare Website{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1234">
+
+</head>
+<body>
+
+    {% if request.user.is_authenticated and request.user.role == 'patient' %}
+        {% include 'components/patient_nav.html' %}
+    {% elif request.user.is_authenticated and request.user.role == 'doctor' %}
+        {% include 'components/doctor_nav.html' %}
+    {% else %}
+        {% include 'components/guest_nav.html' %}
+    {% endif %}
+
+
+    <div class="container mt-3">
+            <!-- عرض رسايل النجاح أو الخطأ -->
+            {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% comment %} {% include 'my_app/includes/scripts.html' %} {% endcomment %}
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // نلاقي كل الرسايل اللي في الصفحة
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            // نخلي الرسالة تختفي بعد 5 ثواني (5000 مللي ثانية)
+            setTimeout(function() {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                // نمسح الرسالة من الصفحة بعد ما تختفي
+                setTimeout(function() {
+                    alert.remove();
+                }, 150); // نستني 150 مللي ثانية عشان الانيميشن يكمل
+            }, 2000);
+        });
+    });
+</script>
+
+
+</script>
+
+</html>

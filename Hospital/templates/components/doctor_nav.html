@@ -1,0 +1,64 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- رابط الصفحة الرئيسية -->
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'add_doctor_appointment' %}" class="nav-link">Appointment</a>
+
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      inquiries
+                    </a>
+                    <ul class="dropdown-menu">
+                      <a href="{% url 'doctor_inquiries' %}" class="nav-link">Aproval request</a>
+                      <hr>
+                      <a href="{% url 'doctor_appointments' %}" class="nav-link">History</a>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sitting
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'hospital_list' %}" class="nav-link">Hospitale</a></li>
+                      <hr>
+                      <li><a href="{% url 'doctor-jobtypes' %}" class="nav-link">Jop Type</a></li>
+                      <hr>
+                      <li><a href="{% url 'doctor-departments' %}" class="nav-link">Department</a></li>
+                      <hr>
+                      <li><a href="{% url 'doctor-employees' %}" class="nav-link">Employee</a></li>
+                      <hr>
+                      <li><a href="{% url 'doctor-patients' %}" class="nav-link">Patient</a></li>
+                                      
+                    </ul>
+                  </li>
+
+            </ul>
+
+
+            <div class="dropdown">
+                <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" id="avatarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{% static 'img/doctor.jpg' %}" alt="avatar" width="40" height="40" class="rounded-circle border border-2 border-light shadow-sm me-2">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="avatarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'doctor_profile' %}"><i class="bi bi-person me-2"></i>Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'doctor_logout' %}"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</nav>

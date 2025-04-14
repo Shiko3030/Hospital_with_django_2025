@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="role-selection">
+    <h2>Choose Your Login Role</h2>
+    <div class="roles">
+      <div class="role-card">
+        <div class="role-title">Healthcare Provider</div>
+        <a href="{% url 'doctor_login' %}">
+            <img src="{% static 'img/doctor.jpg' %}" alt="Healthcare Provider">
+        </a>
+      </div>
+      <div class="role-card">
+        <div class="role-title">Patient</div>
+        <a href="{% url 'patient_login' %}">
+        <img src="{% static 'img/patient.jpg' %}" alt="Patient">
+      </a>
+      </div>
+       
+    </div>
+  </div>
+  
+
+
+{% endblock %}

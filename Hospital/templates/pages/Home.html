@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<!-- القسم الرئيسي -->
+<section class="main-section">
+    <div class="content">
+        <h1>GET BETTER CARE FOR YOUR HEALTH</h1>
+        <p>
+            Our network of hospitals is dedicated to supporting your health at every step.
+            We receive consistent, high-quality care, no matter where you are. From
+            appointments to personalized care plans, we’re here to make managing your
+            health simpler and more connected across all our hospitals.
+        </p>
+
+        <!-- زر تسجيل الدخول يظهر بس لو المستخدم مش مسجّل دخوله -->
+        <a href="{% url 'login_role' %}" {% if request.user.is_authenticated %}style="visibility: hidden;"{% endif %}>  
+            <button class="login-btn">LOGIN</button>
+        </a>
+    </div>
+
+    <div class="illustration">
+        <img src="{% static 'img/doctors.jpg' %}" alt="Healthcare Illustration">
+    </div>
+</section>
+{% endblock %}

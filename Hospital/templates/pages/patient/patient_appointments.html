@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Avatar and Heading -->
+    <div class="text-center mb-4">
+        <img src="{% static 'img/patient.jpg' %}" alt="Avatar" class="rounded-circle shadow" width="120" height="120">
+        <h2 class="text-center text-white mb-4">Add New Appointment</h2>
+    </div>
+
+    <!-- Appointment Form -->
+    <div class="card bg-success bg-opacity-25 text-white mb-5 p-4 rounded-3 shadow">
+        <form method="post" class="row g-3">
+            {% csrf_token %}
+            
+            <!-- Hospital Field -->
+            <div class="col-md-6">
+                <label for="{{ form.hospital.id_for_label }}" class="form-label text-white">Hospital</label>
+                {{ form.hospital }}
+                {% if form.hospital.errors %}
+                <div class="text-danger">{{ form.hospital.errors }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Department Field -->
+            <div class="col-md-6">
+                <label for="{{ form.department.id_for_label }}" class="form-label text-white">Department</label>
+                {{ form.department }}
+                {% if form.department.errors %}
+                <div class="text-danger">{{ form.department.errors }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Doctor Field -->
+            <div class="col-md-6">
+                <label for="{{ form.doctor.id_for_label }}" class="form-label text-white">Doctor</label>
+                {{ form.doctor }}
+                {% if form.doctor.errors %}
+                <div class="text-danger">{{ form.doctor.errors }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Appointment Date Field -->
+            <div class="col-md-6">
+                <label for="{{ form.appointment_date.id_for_label }}" class="form-label text-white">Appointment Date</label>
+                {{ form.appointment_date }}
+                {% if form.appointment_date.errors %}
+                <div class="text-danger">{{ form.appointment_date.errors }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div class="col-12">
+                <button type="submit" class="btn btn-success w-100">Add Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

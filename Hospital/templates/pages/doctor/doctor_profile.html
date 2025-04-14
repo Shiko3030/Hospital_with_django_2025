@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- Avatar and Welcome Message -->
+    <div class="text-center mb-5">
+        <img src="{% static 'img/doctor.jpg' %}" alt="Avatar" class="rounded-circle shadow-lg border border-3 border-success" width="140" height="140">
+        <h2 class="text-white mt-3 fw-bold">Welcome, Dr. {{ doctor.name }}</h2>
+        <p class="text-white mt-3 fw-bold">Here is your profile information.</p>
+    </div>
+
+    <!-- Profile Details Card -->
+    <div class="card bg-success bg-opacity-75 text-white p-4 rounded-4 shadow-lg">
+        <h4 class="mb-4 text-center border-bottom border-secondary pb-3">
+            <i class="bi bi-person-lines-fill me-2 text-success"></i>Doctor Profile
+        </h4>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <label class="form-label text-white">Username</label>
+                <div class="form-control bg-transparent border border- text-white">{{ doctor.user.username }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-white">Email</label>
+                <div class="form-control bg-transparent border border- text-white">{{ doctor.user.email|default:"Not specified" }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-white">Specialty</label>
+                <div class="form-control bg-transparent border border- text-white">{{ doctor.specialty|default:"Not specified" }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-white">Phone Number</label>
+                <div class="form-control bg-transparent border border- text-white">{{ doctor.phone_number|default:"Not specified" }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-white">License Number</label>
+                <div class="form-control bg-transparent border border- text-white">{{ doctor.license_number|default:"Not specified" }}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

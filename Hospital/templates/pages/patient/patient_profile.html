@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- Avatar and Welcome Message -->
+    <div class="text-center mb-5">
+        <img src="{% static 'img/patient.jpg' %}" alt="Avatar" class="rounded-circle shadow-lg border border-3 border-success" width="140" height="140">
+        <h2 class="text-white mt-3 fw-bold">Welcome, {{ patient.name }}</h2>
+        <p class="text-white mt-3 fw-bold">Here is your profile information.</p>
+    </div>
+
+    <!-- Profile Details Card -->
+    <div class="card bg-success  bg-opacity-75 text-white p-4 rounded-4 shadow-lg">
+        <h4 class="mb-4 text-center border-bottom border-secondary pb-3">
+            <i class="bi bi-person-lines-fill me-2 text-success"></i>Patient Profile
+        </h4>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <label class="form-label text-">Username</label>
+                <div class="form-control bg-transparent border border- text-white">{{ patient.user.username }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-">Email</label>
+                <div class="form-control bg-transparent border border- text-white">{{ patient.user.email|default:"Not specified" }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-">Phone Number</label>
+                <div class="form-control bg-transparent border border- text-white">{{ patient.phone_number|default:"Not specified" }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-">Gender</label>
+                <div class="form-control bg-transparent border border- text-white">
+                    {% if patient.gender == 'male' %}Male{% elif patient.gender == 'female' %}Female{% else %}Not specified{% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-">Date of Birth</label>
+                <div class="form-control bg-transparent border border- text-white">{{ patient.date_of_birth|default:"Not specified" }}</div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-">National ID</label>
+                <div class="form-control bg-transparent border border- text-white">{{ patient.national_id }}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

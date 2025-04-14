@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    direction: ltr; /* يمكنك تغييره إلى rtl إذا كنت تريد التصميم بالعربية */
+    background-color: #2e5e4e;
+}
+
+
+
+/* Main Section */
+.main-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 100px;
+    min-height: calc(100vh - 60px);
+}
+
+.content {
+    max-width: 50%;
+}
+
+.content h1 {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 16px;
+    color: #f5f5f5;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.login-btn {
+    background-color: #f5f5f5;
+    color: #2e5e4e;
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #2e5e4e;
+    color: white;
+    border: 1px solid #f5f5f5;
+}
+
+.illustration {
+    max-width: 40%;
+}
+
+.illustration img {
+    width: 100%;
+    height: auto;
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+/* Role Selection Section */
+.role-selection {
+    background-color: #2e5e4e;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.role-selection h2 {
+    margin-bottom: 40px;
+    font-size: 24px;
+}
+
+.roles {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.role-card {
+    background-color: #f5f5f5;
+    color: #2e5e4e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+}
+
+.role-card .role-title {
+    background-color: #2e5e4e;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+}
+
+.role-card img {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+/* Facility Section */
+.facility-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e5e4e;
+    padding: 50px;
+    border-radius: 10px;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.facility-content {
+    flex: 1;
+    max-width: 60%;
+}
+
+.facility-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.facility-btn {
+    display: block;
+    background-color: #fff;
+    color: #333;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.facility-btn:hover {
+    background-color: #e6e6e6;
+}
+
+.facility-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.facility-image img {
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+/* Patient Record Section */
+
+
+
+
+/* Patient ID Section */
+.patient-id-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.patient-id-content {
+    max-width: 400px;
+    width: 100%;
+}
+
+.patient-id-content label {
+    display: block;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.patient-id-content input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #ccc; /* حدود خفيفة كما في الصورة */
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+}
+
+.patient-id-content input::placeholder {
+    color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .patient-id-section {
+        padding: 30px;
+    }
+
+    .patient-id-content {
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
