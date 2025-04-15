@@ -19,7 +19,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -109,15 +108,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-MEDIA_URL = '/images/'  
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, 'static')
-]
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'  # المسار العام للملفات الثابتة
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # المجلدات اللي فيها ملفات الـ static بتاعتك
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # المسار اللي هيتم فيه جمع الملفات الثابتة
+
+# Media files (Uploaded by users)
+MEDIA_URL = '/images/'  # المسار العام لملفات الميديا
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images')  # المسار الفعلي لملفات الميديا
 
 
 # Default primary key field type
