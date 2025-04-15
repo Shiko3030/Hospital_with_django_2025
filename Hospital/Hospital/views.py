@@ -1,10 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .decorators import patient_login_required, doctor_login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import PatientForm,  EmployeeForm , Patient_AppointmentForm , Doctor_AppointmentForm , HospitalForm ,JobTypeForm ,DepartmentForm 
-from .models import Patient,Employee, Appointment, User  , Department, JobType , Hospital
+from django.db.models import Q
+
+from .decorators import patient_login_required, doctor_login_required
+from .forms import (
+    PatientForm,
+    EmployeeForm,
+    Patient_AppointmentForm,
+    Doctor_AppointmentForm,
+    HospitalForm,
+    JobTypeForm,
+    DepartmentForm,
+)
+from .models import (
+    User,
+    Patient,
+    Employee,
+    Appointment,
+    Hospital,
+    Department,
+    JobType
+)
 
 
 
@@ -160,13 +178,40 @@ def doctor_logout(request):
 
 # Appointment  for doctor #################################################
 
-
-@doctor_login_required
 def doctor_appointments(request):
-    doctor = get_object_or_404(Employee, user=request.user)
-    appointments = Appointment.objects.filter(doctor=doctor , is_deleted_by_doctor=False)
-    return render(request, 'pages/doctor/appointments/doctor_appointments.html', {'appointments': appointments})
+    # جيب كل المستشفيات والأقسام والمرضى للقوايم المنسدلة
+    hospitals = Hospital.objects.all()
+    departments = Department.objects.all()
+    patients = Patient.objects.all()
 
+    # ابدأ بكل المواعيد بتاعة الدكتور اللي عامل تسجيل دخول
+    appointments = Appointment.objects.filter(doctor__user=request.user, is_deleted_by_doctor=False)
+
+    # طبّق الفلاتر بناءً على معايير البحث (GET parameters)
+    hospital_id = request.GET.get('hospital')
+    department_id = request.GET.get('department')
+    patient_id = request.GET.get('patient')
+    status = request.GET.get('status')
+    appointment_date = request.GET.get('appointment_date')
+
+    if hospital_id:
+        appointments = appointments.filter(hospital_id=hospital_id)
+    if department_id:
+        appointments = appointments.filter(department_id=department_id)
+    if patient_id:
+        appointments = appointments.filter(patient_id=patient_id)
+    if status:
+        appointments = appointments.filter(status=status)
+    if appointment_date:
+        appointments = appointments.filter(appointment_date__date=appointment_date)
+
+    context = {
+        'appointments': appointments,
+        'hospitals': hospitals,
+        'departments': departments,
+        'patients': patients,
+    }
+    return render(request, 'pages/doctor/appointments/doctor_appointments.html', context)
 
 
 @doctor_login_required
@@ -249,17 +294,7 @@ def delete_doctor_appointment(request, id):
 def Login_Role(request):
     return render(request, 'pages/Login_Role.html')
 
-# صفحة الخدمات
-def Facility(request):
-    return render(request, 'pages/Facility.html')
 
-# صفحة سجل المريض
-def Patient_Record(request):
-    return render(request, 'pages/Patient_Record.html')
-
-# صفحة رقم المريض
-def Patient_Id(request):
-    return render(request, 'pages/Patient_Id.html')
 
 
 
@@ -480,3 +515,4 @@ def hospital_delete(request, pk):
     hospital = get_object_or_404(Hospital, pk=pk)
     hospital.delete()
     return redirect('hospital_list')
+

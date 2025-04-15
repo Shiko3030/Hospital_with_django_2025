@@ -8,15 +8,6 @@ urlpatterns = [
     # صفحة اختيار الدور (مريض، دكتور، موظف)
     path('login-role/', views.Login_Role, name='login_role'),
 
-    # صفحة الخدمات
-    path('facility/', views.Facility, name='facility'),
-
-    # صفحة سجل المريض
-    path('patient-record/', views.Patient_Record, name='patient_record'),
-
-    # صفحة رقم المريض
-    path('patient-id/', views.Patient_Id, name='patient_id'),
-
     # صفحة بروفايل المريض
     path('patient/profile/', views.patient_profile, name='patient_profile'),
 
