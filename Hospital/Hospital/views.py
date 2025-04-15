@@ -28,7 +28,7 @@ from .models import (
 
 # الصفحة الرئيسية
 def Home(request):
-    return render(request, 'pages/home.html')
+    return render(request, 'pages/Home.html')
 
 # تسجيل دخول المريض
 def patient_login(request):
